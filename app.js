@@ -6,8 +6,9 @@ require('dotenv').config();
 const bodyParser = require('body-parser');
 const db = require('./models');
 
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
+app.set("views", __dirname + "/views");
+app.set("view engine", "ejs");
+app.use(express.static(__dirname + "public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
