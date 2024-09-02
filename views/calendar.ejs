@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulizie</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="calendar-container">
+        <% weeks.forEach((week, index) => { %>
+            <div class="week">
+                <h2><%= week.dates.start.toDateString() %> - <%= week.dates.end.toDateString() %></h2>
+                <div class="tasks">
+                    <div class="card green">
+                        <h3>Bagno</h3>
+                        <p><%= weeklyTasks[index].tasks.Bathroom %></p>
+                    </div>
+                    <div class="card yellow">
+                        <h3>Cucina</h3>
+                        <p><%= weeklyTasks[index].tasks.Kitchen %></p>
+                    </div>
+                    <div class="card red">
+                        <h3>Soggiorno</h3>
+                        <p><%= weeklyTasks[index].tasks.LivingRoom %></p>
+                    </div>
+                </div>
+            </div>
+        <% }); %>
+        <br></br>
+        <div class="bottombanner">
+            <button onclick="window.location.href='/'">Home</button>
+        </div>
+    </div>
+</body>
+</html>

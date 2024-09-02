@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cose da fare</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Da fare</h1>
+            <button id="addCardBtn">+</button>
+        </header>
+        <br></br>
+            <div class="bottombanner">
+                <button onclick="window.location.href='/'">Home</button>
+            </div>
+        <div id="addCardForm" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <form action="/todo" method="post">
+                    <label for="person">Chi?:</label>
+                    <select name="person" id="person" required>
+                        <option value="Ale">Ale</option>
+                        <option value="Eric">Eric</option>
+                        <option value="Pol">Pol</option>
+                    </select>
+                    <br>
+                    <label for="content">Cosa?:</label>
+                    <textarea name="content" id="content" required></textarea>
+                    <br>
+                    <button type="submit" class="submit-btn">+</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card-container">
+            <% todos.forEach(todo => { %>
+                <div class="todo <%= todo.person.toLowerCase() %>">
+                    <small><%= todo.person %></small>
+                    <p><%= todo.content %></p>
+                    <br></br>
+                    <form action="/delete-todo/<%= todo.id %>" method="POST" class="delete-form">
+                        <button type="submit" class="delete-btn">-</button>
+                    </form>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script>
+        // Modal opening and closing logic
+        const addCardBtn = document.getElementById('addCardBtn');
+        const addCardForm = document.getElementById('addCardForm');
+        const closeBtn = document.querySelector('.close-btn');
+
+        addCardBtn.onclick = () => {
+            addCardForm.style.display = 'block';
+        };
+
+        closeBtn.onclick = () => {
+            addCardForm.style.display = 'none';
+        };
+
+        window.onclick = (event) => {
+            if (event.target === addCardForm) {
+                addCardForm.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
