@@ -1,8 +1,10 @@
 const { Sequelize } = require('sequelize');
+import pg from 'pg';
 
 const sequelize = new Sequelize(process.env.DATABASE_CONNECTION_STRING, {
     dialect: 'mysql',
     logging: false,
+    dialectModule: pg
     //ssl: { rejectUnauthorized: false}
 })
 
